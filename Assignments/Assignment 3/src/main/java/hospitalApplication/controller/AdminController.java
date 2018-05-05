@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-    @GetMapping("/goHome")
+    @GetMapping("/goAdminHome")
     public String goHome(Model model) {
         return "redirect:/userCreateForm";
     }

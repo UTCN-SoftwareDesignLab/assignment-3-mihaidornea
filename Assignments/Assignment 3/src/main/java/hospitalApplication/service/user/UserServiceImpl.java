@@ -1,4 +1,4 @@
-package hospitalApplication.service;
+package hospitalApplication.service.user;
 
 import hospitalApplication.dto.UserDto;
 import hospitalApplication.entity.User;
