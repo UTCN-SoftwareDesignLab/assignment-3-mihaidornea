@@ -15,11 +15,11 @@ public class PatientDto {
     private String name;
 
     @NotNull
-    @Min(10000)
+    @Min(value = 10000, message = "Please input a valid Personal Number")
     private Long personalNumber;
 
     @NotNull
-    @Min(10000)
+    @Min(value = 10000, message = "Plsase input a valid Identity Number")
     private Long identityNumber;
 
     @NotNull

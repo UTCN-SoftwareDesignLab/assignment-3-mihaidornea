@@ -9,7 +9,7 @@ public class SecretaryController {
 
     @GetMapping("/goSecretaryHome")
     public String goHome(Model model) {
-        return "redirect:/secretaryHome";
+        return "secretaryHome";
     }
 
     @GetMapping("/createPatient")
@@ -25,6 +25,11 @@ public class SecretaryController {
     @GetMapping("/findPatient")
     public String goToFindForm(Model model){
         return "redirect:/patientFindForm";
+    }
+
+    @GetMapping("/secretaryHome")
+    public String secretaryIndex(Model model){
+        return "secretaryHome";
     }
 
 }
