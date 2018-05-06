@@ -15,7 +15,7 @@
     <td>Password</td>
     <td>Role</td>
     </th>
-    <tr th:object="${user}">
+    <tr th:each="user : ${ userDtoList }">
         <td th:text="${ user.email}">Email</td>
         <td th:text="${ user.username }">Username</td>
         <td th:text="${ user.password }">Password</td>

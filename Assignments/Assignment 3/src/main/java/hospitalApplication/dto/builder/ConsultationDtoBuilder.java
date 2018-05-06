@@ -3,8 +3,6 @@ package hospitalApplication.dto.builder;
 import hospitalApplication.dto.ConsultationDto;
 import hospitalApplication.dto.PatientDto;
 import hospitalApplication.dto.UserDto;
-import hospitalApplication.entity.Patient;
-import hospitalApplication.entity.User;
 
 import java.util.Date;
 
@@ -14,6 +12,7 @@ public class ConsultationDtoBuilder {
 
     public ConsultationDtoBuilder() {
         this.consultationDto = new ConsultationDto();
+        setDescription("");
     }
 
     public ConsultationDtoBuilder setDateOfConsultation(Date dateOfConsultation){
@@ -28,6 +27,11 @@ public class ConsultationDtoBuilder {
 
     public ConsultationDtoBuilder setDoctor(UserDto doctor){
         consultationDto.setDoctor(doctor);
+        return this;
+    }
+
+    public ConsultationDtoBuilder setDescription(String description){
+        consultationDto.setDescription(description);
         return this;
     }
 

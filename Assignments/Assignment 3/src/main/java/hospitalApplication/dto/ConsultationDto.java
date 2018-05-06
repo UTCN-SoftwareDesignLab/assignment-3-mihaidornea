@@ -19,13 +19,22 @@ public class ConsultationDto {
     private PatientDto patient;
 
     @NotNull
-    @DoctorConstraint(message = "You need to select a doctor")
     private UserDto doctor;
 
     @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date dateOfConsultation;
+
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public PatientDto getPatient() {
         return patient;

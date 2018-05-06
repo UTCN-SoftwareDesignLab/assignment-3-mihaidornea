@@ -32,4 +32,9 @@ public class SecretaryController {
         return "secretaryHome";
     }
 
+    @GetMapping("/makeAppointment")
+    public String makeAppointment(Model model){
+        return "redirect:/consultationCreateForm";
+    }
+
 }

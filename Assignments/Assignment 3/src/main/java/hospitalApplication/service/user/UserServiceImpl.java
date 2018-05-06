@@ -24,6 +24,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public User findByUsernameInternal(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user != null)
+            return user;
+        else return null;
+    }
+
+    @Override
     public List<UserDto> findAll() {
         List<User> users = userRepository.findAll();
         List<UserDto> userDtoList = new ArrayList<>();

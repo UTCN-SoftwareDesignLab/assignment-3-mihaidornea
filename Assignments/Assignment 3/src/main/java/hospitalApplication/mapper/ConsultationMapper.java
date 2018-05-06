@@ -19,6 +19,7 @@ public class ConsultationMapper implements Mapper<Consultation, ConsultationDto>
         return new ConsultationBuilder()
                 .setDateOfConsultation(consultationDto.getDateOfConsultation())
                 .setDoctor((User)mapper.mapTo(consultationDto.getDoctor()))
+                .setDescription(consultationDto.getDescription())
                 .setPatient((Patient)mapper1.mapTo(consultationDto.getPatient()))
                 .build();
     }
@@ -27,6 +28,7 @@ public class ConsultationMapper implements Mapper<Consultation, ConsultationDto>
     public ConsultationDto mapFrom(Consultation consultation) {
         return new ConsultationDtoBuilder()
                 .setDateOfConsultation(consultation.getDateOfConsultation())
+                .setDescription(consultation.getDescription())
                 .setDoctor((UserDto)mapper.mapFrom(consultation.getDoctor()))
                 .setPatient((PatientDto)mapper1.mapFrom(consultation.getPatient()))
                 .build();

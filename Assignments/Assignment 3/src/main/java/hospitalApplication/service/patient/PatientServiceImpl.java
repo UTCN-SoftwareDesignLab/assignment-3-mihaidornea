@@ -35,7 +35,15 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public PatientDto findByPersonalNumber(Long personalNumber) {
-        return (PatientDto)mapper.mapFrom(patientRepository.findByPersonalNumber(personalNumber));
+        Patient patient = patientRepository.findByPersonalNumber(personalNumber);
+        if (patient != null)
+            return (PatientDto)mapper.mapFrom(patientRepository.findByPersonalNumber(personalNumber));
+        else return null;
+    }
+
+    @Override
+    public Patient findByPersonalNumberInternal(Long personalNumber) {
+        return patientRepository.findByPersonalNumber(personalNumber);
     }
 
     @Override

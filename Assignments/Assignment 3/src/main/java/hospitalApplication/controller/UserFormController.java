@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -71,12 +74,23 @@ public class UserFormController {
     public ModelAndView findUser(@RequestParam Map<String, String> field){
         UserDto userDtoByEmail = userService.findByEmail(field.get("information"));
         UserDto userDtoByUsername = userService.findByUsername(field.get("information"));
+        List<UserDto> userDtoList = new ArrayList<>();
         ModelAndView mav = new ModelAndView("userFound");
         if (userDtoByEmail != null){
-            mav.addObject("user", userDtoByEmail);
+            userDtoList.add(userDtoByEmail);
+            mav.addObject("userDtoList", userDtoByEmail);
         } else if (userDtoByUsername != null){
-            mav.addObject("user", userDtoByUsername);
+            userDtoList.add(userDtoByUsername);
+            mav.addObject("userDtoList", userDtoByUsername);
         }
+        return mav;
+    }
+
+    @GetMapping("/allUsers")
+    public ModelAndView listAllUsers(){
+        List<UserDto> userDtoList = userService.findAll();
+        ModelAndView mav = new ModelAndView("userFound");
+        mav.addObject(userDtoList);
         return mav;
     }
 }

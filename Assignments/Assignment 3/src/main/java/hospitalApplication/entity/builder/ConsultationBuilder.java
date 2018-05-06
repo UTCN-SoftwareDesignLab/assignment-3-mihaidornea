@@ -29,6 +29,11 @@ public class ConsultationBuilder {
         return this;
     }
 
+    public ConsultationBuilder setDescription(String description){
+        consultation.setDescription(description);
+        return this;
+    }
+
     public Consultation build(){
         return consultation;
     }

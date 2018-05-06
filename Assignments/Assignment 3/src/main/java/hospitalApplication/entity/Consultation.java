@@ -1,12 +1,8 @@
 package hospitalApplication.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.context.annotation.Primary;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -17,8 +13,30 @@ public class Consultation {
     private Long id;
 
     private Date dateOfConsultation;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
     private Patient patient;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     private User doctor;
+    private String description;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Date getDateOfConsultation() {
         return dateOfConsultation;

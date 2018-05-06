@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -74,6 +75,16 @@ public class PatientFormController {
         ModelAndView mav = new ModelAndView("patientFound");
         if (patientDto != null){
             mav.addObject("patient", patientDto);
+        }
+        return mav;
+    }
+
+    @GetMapping("/getAllPatients")
+    public ModelAndView findAllPatients(){
+        List<PatientDto> patientDto = patientService.findAll();
+        ModelAndView mav = new ModelAndView("foundPatients");
+        if (patientDto != null){
+            mav.addObject("patientDtoList", patientDto);
         }
         return mav;
     }
