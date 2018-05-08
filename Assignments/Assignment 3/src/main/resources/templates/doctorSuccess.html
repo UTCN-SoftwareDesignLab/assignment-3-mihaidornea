@@ -2,7 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
     <title>Success!</title>
-</head>
+        <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/main.css" rel="stylesheet">
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+        <script src="/chat.js"></script>
+    </head>
 <h1>Success!</h1>
 <body>
 
@@ -10,8 +16,5 @@
     <p><input type="submit" class="button" value="Go To Homepage" name="goDoctorHome" />
 </form>
 
-<!--<form action="#" th:action="@{/seeAllUsers}" method="get">
-    <p><input type="submit" class="button" value="See All Employees" name="seeAll" />
-</form>-->
 </body>
 </html>

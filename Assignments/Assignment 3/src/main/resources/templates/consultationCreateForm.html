@@ -3,6 +3,10 @@
 <head>
     <title>Consultation Creation Form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/secretary.js"></script>
 </head>
 <body>
 <h1>Insert Consultation Data</h1>
@@ -10,21 +14,21 @@
     <table>
         <tr>
             <td>Doctor Name:</td>
-            <td><input type="text" th:field="*{doctor.username}" /></td>
+            <td><input type="text" id="doctorUsername" th:field="*{doctor.username}" /></td>
             <td th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor}">Doctor Error</td>
         </tr>
         <tr>
             <td>Patient Personal Number:</td>
-            <td><input type="text" th:field="*{patient.personalNumber}" /></td>
+            <td><input type="text" id="patientPersonalNumber" th:field="*{patient.personalNumber}" /></td>
             <td th:if="${#fields.hasErrors('patient')}" th:errors="*{patient}">Personal Number Error</td>
         </tr>
         <tr>
             <td>Date Of Consultation:</td>
-            <td><input type="date" th:field="*{dateOfConsultation}" /></td>
+            <td><input type="date" id="dateOfConsultation" th:id="dateOfConsultation" th:field="*{dateOfConsultation}" /></td>
             <td th:if="${#fields.hasErrors('dateOfConsultation')}" th:errors="*{dateOfConsultation}">Date Of Consultation Error</td>
         </tr>
         <tr>
-            <td><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></td>
+            <td><input id="create" type="submit" value="Submit" /> <input type="reset" value="Reset" /></td>
         </tr>
     </table>
 </form>
@@ -32,6 +36,69 @@
 <form action="#" th:action="@{/goSecretaryHome}" method="get">
     <p><input type="submit" class="button" value="Go To Homepage" name="goHome" />
 </form>
+
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-12 space-bottom10">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="from">Name?</label>
+                    <input type="text" id="from" class="form-control"
+                           placeholder="enter your name...">
+                </div>
+                <button id="connect"
+                        class="btn btn-default"
+                        type="submit">Connect</button>
+                <button id="disconnect"
+                        class="btn btn-default"
+                        type="submit"
+                        disabled="disabled">Disconnect</button>
+            </form>
+        </div>
+    </div>
+    <div class="row space-bottom10">
+        <form>
+            <div class="col-md-2">
+                <select name="topic"
+                        id="topic"
+                        class="form-control">
+                    <option>Lifestyle</option>
+                    <option>Travel</option>
+                    <option>Career</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text"
+                       id="text"
+                       class="form-control"
+                       placeholder="enter message ...">
+            </div>
+            <div class="col-md-4">
+                <button id="send"
+                        class="btn btn-default"
+                        type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th width="10%">From</th>
+                    <th width="15%">Topic</th>
+                    <th width="60%">Message</th>
+                    <th width="10%">Time</th>
+                </tr>
+                </thead>
+                <tbody id="messages">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
 
 </body>
 </html>
