@@ -54,6 +54,6 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public boolean create(PatientDto patientDto) {
         patientRepository.save((Patient)mapper.mapTo(patientDto));
-        return false;
+        return true;
     }
 }

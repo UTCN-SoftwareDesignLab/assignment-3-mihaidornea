@@ -26,50 +26,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/userCreateForm")
-    public String creatingForm() {
-        return "/userCreateForm";
-    }
-
-    @PostMapping("/userCreateForm")
-    public String createUser(@Valid UserDto userDto, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "/userCreateForm";
-        userService.create(userDto);
-        return "/adminSuccess";
-    }
-
-    @GetMapping("/userDeleteForm")
-    public String deleteForm() {
-        return "/userDeleteForm";
-    }
-
-    @PostMapping("/userDeleteForm")
-    public String deleteUser(@Valid UserDto userDto, BindingResult bindingResult) {
-        if (bindingResult.hasFieldErrors("username"))
-            return "/userDeleteForm";
-        userService.deleteByUsername(userDto);
-        return "/adminSuccess";
-    }
-
-    @GetMapping("/userUpdateForm")
-    public String updateForm(){
-        return "/userUpdateForm";
-    }
-
-    @PostMapping("/userUpdateForm")
-    public String updateUser(@RequestParam Map<String, String> field){
-        UserDto userDto = userService.findByUsername(field.get("username"));
-        userService.update(userDto, field.get("newUsername"));
-        return "/adminSuccess";
-    }
-
-    @GetMapping("/userFindForm")
-    public String findForm(){
-        return "/userFindForm";
-    }
-
-
     @GetMapping("/goAdminHome")
     public String goHome(Model model) {
         return "administratorHome";
@@ -92,7 +48,7 @@ public class AdminController {
 
     @GetMapping("/updateUser")
     public String goToUpdateForm(Model model){
-        return "redirect:/userFindForm";
+        return "redirect:/userUpdateForm";
     }
 
     @GetMapping("/deleteUser")

@@ -1,5 +1,5 @@
 package sample.controller;
-/*
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +69,7 @@ public class UserFormController {
         return "/userFindForm";
     }
 
-    @PostMapping
+    /*@PostMapping
     public ModelAndView findUser(@RequestParam Map<String, String> field){
         UserDto userDtoByEmail = userService.findByEmail(field.get("information"));
         UserDto userDtoByUsername = userService.findByUsername(field.get("information"));
@@ -91,5 +91,5 @@ public class UserFormController {
         ModelAndView mav = new ModelAndView("userFound");
         mav.addObject(userDtoList);
         return mav;
-    }
-}*/
+    }*/
+}
